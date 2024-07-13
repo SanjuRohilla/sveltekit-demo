@@ -1,9 +1,9 @@
 // will purely run on server
-export async function load({params}){
-    
-    // const slug = ${params.slug}
+import {sql} from "@vercel/postgres";
+
+export async function load({params , locals}){
     return{
-       content: `hello ${params.sanju}`
+       names: await sql`SELECT * from NAMES where user_id=${locals.user}`
     }
 
 }
